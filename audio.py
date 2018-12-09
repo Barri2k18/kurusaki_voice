@@ -7,7 +7,7 @@ from discord.ext.commands import Bot
 
 owner = ["362672438699622403"]
 
-bot=commands.Bot(command_prefix='+', 'a.')
+bot=commands.Bot(command_prefix='+')
 
 from discord import opus
 OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll',
