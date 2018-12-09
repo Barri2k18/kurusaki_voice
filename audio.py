@@ -6,23 +6,13 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 
 
-bot=commands.Bot(command_prefix='*')
+bot=commands.Bot(command_prefix='+','a.')
 
 from discord import opus
 OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll',
              'libopus-0.dll', 'libopus.so.0', 'libopus.0.dylib']
 
 
-async def status_task():
-    while True:
-        await bot.change_presence(game=discord.Game(name='for axhelp', type=1))
-        await asyncio.sleep(5)
-        await bot.change_presence(game=discord.Game(name='with '+str(len(set(bot.get_all_members())))+' users', type=1))
-        await asyncio.sleep(3)
-        await bot.change_presence(game=discord.Game(name='Begone', type=1))
-        await asyncio.sleep(3)
-        await bot.change_presence(game=discord.Game(name='Thot', type=1))
-        await asyncio.sleep(1)
 
 def load_opus_lib(opus_libs=OPUS_LIBS):
     if opus.is_loaded():
