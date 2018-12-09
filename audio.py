@@ -13,6 +13,17 @@ OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll',
              'libopus-0.dll', 'libopus.so.0', 'libopus.0.dylib']
 
 
+async def status_task():
+    while True:
+        await bot.change_presence(game=discord.Game(name='for axhelp', type=1))
+        await asyncio.sleep(5)
+        await bot.change_presence(game=discord.Game(name='with '+str(len(set(bot.get_all_members())))+' users', type=1))
+        await asyncio.sleep(3)
+        await bot.change_presence(game=discord.Game(name='Begone', type=1))
+        await asyncio.sleep(3)
+        await bot.change_presence(game=discord.Game(name='Thot', type=1))
+        await asyncio.sleep(1)
+
 def load_opus_lib(opus_libs=OPUS_LIBS):
     if opus.is_loaded():
         return True
@@ -83,6 +94,29 @@ async def player_in(con):  # After function for music
         pass
 
 
+@bot.command(pass_context=True, hidden=True)
+async def setgame(ctx, *, game):
+    if ctx.message.author.id not in owner:
+        return
+    game = game.strip()
+    if game != "":
+        try:
+            await bot.change_presence(game=discord.Game(name=game, type=1))
+        except:
+            await bot.say("Failed to change game")
+        else:
+            await bot.say("Successfuly changed game to {}".format(game))
+    else:
+        await bot.send_cmd_help(ctx)
+        
+@bot.command(pass_context=True)
+async def avatar(ctx, member: discord.Member):
+	embed = discord.Embed(title="{}'s avatar".format(member.name), url=member.avatar_url)
+	embed.set_image(url=member.avatar_url)
+	embed.set_footer(text='{}'.format(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+	await bot.delete_message(ctx.message)
+	await bot.say(embed=embed) # ----------------------------------- EMBED ONE
+      
 @bot.command(pass_context=True)
 async def play(ctx, *,url):
 
