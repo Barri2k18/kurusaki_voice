@@ -5,8 +5,6 @@ import os
 from discord.ext import commands
 from discord.ext.commands import Bot
 
-owner = ["362672438699622403"]
-
 bot=commands.Bot(command_prefix='+')
 
 from discord import opus
@@ -83,22 +81,6 @@ async def player_in(con):  # After function for music
             del songs[con.message.server.id][0]  # delete list afterwards
     except:
         pass
-
-
-@bot.command(pass_context=True, hidden=True)
-async def setgame(ctx, *, game):
-    if ctx.message.author.id not in owner:
-        return
-    game = game.strip()
-    if game != "":
-        try:
-            await bot.change_presence(game=discord.Game(name=game, type=1))
-        except:
-            await bot.say("Failed to change game")
-        else:
-            await bot.say("Successfuly changed game to {}".format(game))
-    else:
-        await bot.send_cmd_help(ctx)
         
 @bot.command(pass_context=True)
 async def avatar(ctx, member: discord.Member):
