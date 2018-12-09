@@ -99,6 +99,19 @@ async def say(ctx, *, msg = None):
     return
 
 @bot.command(pass_context=True)
+@commands.has_permissions(administrator=True)
+async def embed(ctx, *args):
+    """
+    Sending embeded messages with color (and maby later title, footer and fields)
+    """
+    argstr = " ".join(args)
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    text = argstr
+    color = discord.Color((r << 16) + (g << 8) + b)
+    await bot.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
+    await bot.delete_message(ctx.message)
+
+@bot.command(pass_context=True)
 async def play(ctx, *,url):
 
     opts = {
