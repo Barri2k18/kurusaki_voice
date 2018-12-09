@@ -90,7 +90,13 @@ async def avatar(ctx, member: discord.Member):
 	await bot.delete_message(ctx.message)
 	await bot.say(embed=embed) # ----------------------------------- EMBED ONE
       
-
+@bot.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def say(ctx, *, msg = None):
+    await bot.delete_message(ctx.message)
+    if not msg: await bot.say("Please specify a message to send")
+    else: await bot.say(msg)
+    return
 
 @bot.command(pass_context=True)
 async def play(ctx, *,url):
