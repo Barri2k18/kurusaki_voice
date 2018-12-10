@@ -1,11 +1,19 @@
 import discord
 import asyncio
+import platform
+import colorsys
 import youtube_dl
 import os
+import time
+import random
 from discord.ext import commands
 from discord.ext.commands import Bot
+from discord.utils import find
+from discord import Game, Embed, Color, Status, ChannelType
 
-bot=commands.Bot(command_prefix='+')
+BOT_PREFIX = ("+", "a!", "ax", "366579653395349505", "<@366579653395349505>")
+
+bot=commands.Bot(command_prefix=BOT_PREFIX)
 
 from discord import opus
 OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll',
